@@ -1,0 +1,42 @@
+[
+  {
+    "name": "PrintMate Solutions",
+    "service_description": "printing flyers brochures banners marketing materials design"
+  },
+  {
+    "name": "SwiftDeliver Logistics",
+    "service_description": "delivery logistics courier shipping transport goods store"
+  },
+  {
+    "name": "SocialBoost Agency",
+    "service_description": "social media marketing instagram promotion sales advertising brand"
+  },
+  {
+    "name": "FreshBite Supplies",
+    "service_description": "food wholesale ingredients catering restaurant cafe supplier"
+  },
+  {
+    "name": "TechFix Hub",
+    "service_description": "repair electronics phone laptop computer technology service"
+  },
+  {
+    "name": "CleanPro Services",
+    "service_description": "cleaning office space commercial janitorial laundry hygiene"
+  },
+  {
+    "name": "MoneyWise Accounting",
+    "service_description": "accounting bookkeeping tax finance profit business records"
+  },
+  {
+    "name": "WebCraft Studio",
+    "service_description": "website design online store ecommerce digital presence web"
+  },
+  {
+    "name": "EventPro Planner",
+    "service_description": "events planning catering venue decoration wedding celebration"
+  },
+  {
+    "name": "GrowGreen Farms",
+    "service_description": "vegetables organic farm produce fresh food market grocery"
+  }
+]
