@@ -16,7 +16,7 @@ app.add_middleware(
 
 
 GLM_API_URL = "https://api.ilmu.ai/v1/chat/completions"
-GLM_API_KEY = "sk-93119a8912dba52f629160b1fc8ad2aec5c03e045e49f285"
+GLM_API_KEY = ""
 
 
 #  GLM calling function — this is where we interact with the AI model
