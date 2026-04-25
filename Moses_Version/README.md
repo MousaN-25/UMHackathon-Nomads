@@ -3,7 +3,7 @@
 A decision intelligence platform for young entrepreneurs and small business owners, built for UMHackathon 2026.
 
 - 🎥 **Pitch Video:** https://youtu.be/YM-o8iqMK90
-- 📋 **Trello Board:** [Insert URL here]
+- 📋 **Trello Board:** https://trello.com/invite/b/69ecfaa7fe6fb1530d638268/ATTI04ce9fa951bb39230817f3f9b8c5f7df8DD901BE/umhackathon26-nomads
 
 ## Tech Stack
 
