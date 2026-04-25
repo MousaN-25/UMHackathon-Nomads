@@ -9,7 +9,7 @@ A decision intelligence platform for young entrepreneurs and small business owne
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Python, FastAPI
-- **AI:** ILMU GLM (ilmu-glm-5.1)
+- **AI:** Z.AI ILMU GLM (ilmu-glm-5.1)
 - **Database:** JSON
 
 ## Getting Started
@@ -17,7 +17,7 @@ A decision intelligence platform for young entrepreneurs and small business owne
 ### Prerequisites
 
 - Python 3.10+
-- ILMU API key from [console.ilmu.ai](https://console.ilmu.ai)
+- Z.AI API key from [console.ilmu.ai](https://console.ilmu.ai)
 
 ### Installation
 
