@@ -18,6 +18,32 @@ app.add_middleware(
 GLM_API_URL = "https://api.ilmu.ai/v1/chat/completions"
 GLM_API_KEY = ""
 
+# List of words that suggest a real business description
+BUSINESS_KEYWORDS = [
+    "sell", "selling", "shop", "store", "stall", "business", "service",
+    "food", "cafe", "restaurant", "online", "delivery", "market", "supply",
+    "repair", "clean", "design", "print", "event", "farm", "trade", "product",
+    "customer", "client", "offer", "provide", "make", "manufacture", "cook",
+    "transport", "logistics", "clothing", "fashion", "tech", "software"
+]
+
+def is_valid_business_description(description: str) -> bool:
+    """
+    Checks if the description sounds like a real business.
+    Returns False if it's too short or has no business-related words.
+    """
+    # Too short to be a real description
+    if len(description.split()) < 3:
+        return False
+
+    # Check if any business keyword exists in the description
+    desc_lower = description.lower()
+    for keyword in BUSINESS_KEYWORDS:
+        if keyword in desc_lower:
+            return True
+
+    return False
+
 
 #  GLM calling function — this is where we interact with the AI model
 
@@ -36,10 +62,13 @@ def call_glm(prompt: str) -> str:
         "temperature": 0.7,
     })
     try:
-        response = httpx.post(GLM_API_URL, headers=headers, content=payload, timeout=30)
+        response = httpx.post(GLM_API_URL, headers=headers, content=payload, timeout=60)
         response.raise_for_status()
         data = response.json()
-        return data["choices"][0]["message"]["content"].strip()
+        content = data["choices"][0]["message"]["content"]
+        if content is None:
+            return "No response generated. Please try again."
+        return content.strip()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"GLM API error: {str(e)}")
 
@@ -128,7 +157,7 @@ def estimate_impact(metrics: dict) -> str:
 
 def load_businesses():
     """Load the businesses JSON file."""
-    data_path = "/Users/mousanajmi/Downloads/files/data/businesses.json"
+    data_path = "/Users/mousanajmi/Downloads/Moses_Version/data/businesses.json"
     with open(data_path, "r") as f:
         return json.load(f)
 
@@ -179,6 +208,13 @@ class ChatRequest(BaseModel):
 # ============================================================
 @app.post("/analyze")
 async def analyze(req: AnalyzeRequest):
+
+    if not is_valid_business_description(req.description):
+        raise HTTPException(
+            status_code=400,
+            detail="Please enter a valid business description. For example: 'I sell handmade noodles from a food stall near a university.'"
+        )
+    
     """
     Full pipeline:
     1. Real backend analysis (no AI)
@@ -274,6 +310,13 @@ EXPLANATION:
 # ============================================================
 @app.post("/recommend")
 async def recommend(req: RecommendRequest):
+
+    if not is_valid_business_description(req.description):
+        raise HTTPException(
+            status_code=400,
+            detail="Please enter a valid business description. For example: 'I sell handmade noodles from a food stall near a university.'"
+        )
+    
     """
     Focused endpoint: returns only actionable recommendations.
     Uses computed metrics to make GLM answers more specific.
@@ -309,29 +352,48 @@ Keep each recommendation to 1-2 sentences. Be specific to the business type."""
 # ============================================================
 @app.post("/match")
 async def match(req: MatchRequest):
-    """
-    Finds keyword-matched businesses, then uses GLM to explain
-    why each match is a good partnership — not just keyword overlap.
-    """
+    if not is_valid_business_description(req.description):
+        raise HTTPException(
+            status_code=400,
+            detail="Please enter a valid business description."
+        )
+
     businesses = load_businesses()
     raw_matches = simple_match(req.description, businesses)
 
     if not raw_matches:
         return {"matches": []}
 
+    # Build ONE prompt for all matches instead of one per match
+    matches_text = ""
+    for i, biz in enumerate(raw_matches):
+        matches_text += f"{i+1}. {biz['name']} — {biz['service_description']}\n"
+
+    prompt = f"""You are a business advisor. A user runs this business: {req.description}
+
+These businesses were matched as potential partners:
+{matches_text}
+For each business, write one sentence starting with "This partnership..." explaining the value.
+Format your response exactly like this:
+1. This partnership...
+2. This partnership...
+3. This partnership..."""
+
+    glm_response = call_glm(prompt)
+
+    # Split response into individual explanations
+    lines = [line.strip() for line in glm_response.splitlines() if line.strip()]
+    explanations = []
+    for line in lines:
+        # Remove numbering like "1." or "1)"
+        if line and line[0].isdigit():
+            cleaned = line[2:].strip() if len(line) > 2 else line
+            explanations.append(cleaned)
+
+    # Pair each match with its explanation
     enriched_matches = []
-    for biz in raw_matches:
-        # Use GLM to explain the partnership value
-        prompt = f"""In 1-2 sentences, explain why this is a useful business partnership:
-
-Business A: {req.description}
-Business B: {biz['name']} — {biz['service_description']}
-Shared keywords: {', '.join(biz['overlap_keywords'])}
-
-Be specific and practical. Start with "This partnership..."."""
-
-        explanation = call_glm(prompt)
-
+    for i, biz in enumerate(raw_matches):
+        explanation = explanations[i] if i < len(explanations) else "This partnership could provide valuable support for your business."
         enriched_matches.append({
             "name": biz["name"],
             "service_description": biz["service_description"],
@@ -339,8 +401,6 @@ Be specific and practical. Start with "This partnership..."."""
         })
 
     return {"matches": enriched_matches}
-
-
 # ============================================================
 #  ENDPOINT 4: /chat — Contextual chat with computed metrics
 # ============================================================
