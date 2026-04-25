@@ -1,82 +1,80 @@
-# BizMind — AI Business Advisor
+# BizMind — AI Business Advisor & Smart Matching Platform
 
-An AI-powered full-stack web app for young entrepreneurs.
+A decision intelligence platform for young entrepreneurs and small business owners, built for UMHackathon 2026.
 
----
+- 🎥 **Pitch Video:** https://youtu.be/YM-o8iqMK90
+- 📋 **Trello Board:** [Insert URL here]
+
+## Tech Stack
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Python, FastAPI
+- **AI:** ILMU GLM (ilmu-glm-5.1)
+- **Database:** JSON
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- ILMU API key from [console.ilmu.ai](https://console.ilmu.ai)
+
+### Installation
+
+```bash
+pip install fastapi uvicorn httpx
+```
+
+### Configuration
+
+In `main.py`, set your API credentials:
+
+```python
+GLM_API_URL = "https://api.ilmu.ai/v1/chat/completions"
+GLM_API_KEY = "your-api-key-here"
+```
+
+### Running the App
+
+**Terminal 1 — Backend:**
+```bash
+python -m uvicorn main:app --reload
+```
+
+**Terminal 2 — Frontend:**
+```bash
+cd frontend
+python -m http.server 3000
+```
+
+Open [http://localhost:3000/index.html](http://localhost:3000/index.html) in your browser.
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/analyze` | Analyze business data and return AI insights |
+| POST | `/recommend` | Get 3 actionable recommendations |
+| POST | `/match` | Find relevant business partners |
+| POST | `/chat` | Context-aware AI chat |
 
 ## Project Structure
 
 ```
-BizMind/
-├── backend/
-│   └── main.py          ← FastAPI server + GLM integration
-├── frontend/
-│   └── index.html       ← Single-file frontend (HTML + CSS + JS)
+project/
+├── main.py
 ├── data/
-│   └── businesses.json  ← Local database for smart matching
-├── requirements.txt
+│   └── businesses.json
+├── frontend/
+│   └── index.html
 └── README.md
 ```
 
----
+## Team
 
-## Setup & Run
+**Nomads** — UMHackathon 2026
 
-### 1. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Set your GLM API key
-
-Open `backend/main.py` and find these two lines near the top:
-
-```python
-GLM_API_URL = "YOUR_API_URL"
-GLM_API_KEY = "YOUR_API_KEY"
-```
-
-Replace them with your actual GLM API credentials.
-
-### 3. Start the backend
-
-```bash
-cd backend
-uvicorn main:app --reload
-```
-
-The backend runs at: http://localhost:8000
-
-### 4. Open the frontend
-
-Just open `frontend/index.html` in your browser (double-click or drag into Chrome).
-
----
-
-## How to Demo
-
-1. Go to the **Advisor** tab
-2. Describe your business and enter weekday/weekend sales
-3. Click **Analyze My Business**
-4. See AI-generated Insight, Recommendation, and Explanation
-5. Switch to the **Chat** tab and ask follow-up questions
-6. Switch to the **Matches** tab to see suggested partner businesses
-
----
-
-## API Endpoints
-
-| Method | Endpoint   | Description                        |
-|--------|------------|------------------------------------|
-| POST   | /analyze   | Analyze business data via GLM      |
-| POST   | /chat      | Chat with AI using business context|
-
----
-
-## Tech Stack
-
-- **Frontend**: HTML + CSS + JavaScript (no framework)
-- **Backend**: Python + FastAPI
-- **AI**: GLM API (configurable)
-- **Data**: JSON file (no database needed)
+| Name
+|---|---|
+| Mousa Alaa Mousa Nejmi
+| Abdulrahman Abdullah Abdulrahman Al-Gafri
