@@ -1,42 +1,102 @@
 [
   {
     "name": "PrintMate Solutions",
-    "service_description": "printing flyers brochures banners marketing materials design"
+    "service_description": "printing flyers brochures banners marketing materials design packaging labels"
   },
   {
     "name": "SwiftDeliver Logistics",
-    "service_description": "delivery logistics courier shipping transport goods store"
+    "service_description": "delivery logistics courier shipping transport goods store supply chain"
   },
   {
     "name": "SocialBoost Agency",
-    "service_description": "social media marketing instagram promotion sales advertising brand"
+    "service_description": "social media marketing instagram promotion sales advertising brand online"
   },
   {
     "name": "FreshBite Supplies",
-    "service_description": "food wholesale ingredients catering restaurant cafe supplier"
+    "service_description": "food wholesale ingredients catering restaurant cafe supplier fresh produce"
   },
   {
     "name": "TechFix Hub",
-    "service_description": "repair electronics phone laptop computer technology service"
+    "service_description": "repair electronics phone laptop computer technology service maintenance"
   },
   {
     "name": "CleanPro Services",
-    "service_description": "cleaning office space commercial janitorial laundry hygiene"
+    "service_description": "cleaning office space commercial janitorial laundry hygiene housekeeping"
   },
   {
     "name": "MoneyWise Accounting",
-    "service_description": "accounting bookkeeping tax finance profit business records"
+    "service_description": "accounting bookkeeping tax finance profit business records payroll"
   },
   {
     "name": "WebCraft Studio",
-    "service_description": "website design online store ecommerce digital presence web"
+    "service_description": "website design online store ecommerce digital presence web development"
   },
   {
     "name": "EventPro Planner",
-    "service_description": "events planning catering venue decoration wedding celebration"
+    "service_description": "events planning catering venue decoration wedding celebration corporate"
   },
   {
     "name": "GrowGreen Farms",
-    "service_description": "vegetables organic farm produce fresh food market grocery"
+    "service_description": "vegetables organic farm produce fresh food market grocery supplier"
+  },
+  {
+    "name": "PackRight Packaging",
+    "service_description": "packaging boxes containers food packaging takeaway wrapping materials store"
+  },
+  {
+    "name": "SnapShot Photography",
+    "service_description": "photography product photos food photography marketing content social media"
+  },
+  {
+    "name": "ColdChain Storage",
+    "service_description": "cold storage refrigeration frozen food warehouse ingredients preserve"
+  },
+  {
+    "name": "BrandMark Design",
+    "service_description": "logo design branding identity graphic design marketing materials visual"
+  },
+  {
+    "name": "QuickFix Maintenance",
+    "service_description": "maintenance repair plumbing electrical shop equipment stall fixture"
+  },
+  {
+    "name": "SpiceRoute Trading",
+    "service_description": "spices herbs seasoning wholesale ingredients cooking food restaurant cafe"
+  },
+  {
+    "name": "GrabSpace Rental",
+    "service_description": "space rental booth stall market pop-up store event venue"
+  },
+  {
+    "name": "LegalEase Consultants",
+    "service_description": "business registration legal compliance license permit sole proprietor"
+  },
+  {
+    "name": "EcoWrap Supplies",
+    "service_description": "eco friendly packaging sustainable materials food container takeaway delivery"
+  },
+  {
+    "name": "MediaHype Productions",
+    "service_description": "video production reels content creation social media marketing brand promotion"
+  },
+  {
+    "name": "BulkBuy Wholesale",
+    "service_description": "wholesale bulk buying supplier discount goods resell store retail"
+  },
+  {
+    "name": "SmartPOS Systems",
+    "service_description": "point of sale cashier system payment QR code digital sales tracking"
+  },
+  {
+    "name": "StyleThread Fashion",
+    "service_description": "clothing fashion apparel custom print uniform embroidery retail online"
+  },
+  {
+    "name": "FoodTruck Builders",
+    "service_description": "food truck cart stall equipment setup cooking station mobile food"
+  },
+  {
+    "name": "LocalReach Marketing",
+    "service_description": "local marketing flyers distribution neighborhood promotion customer outreach"
   }
 ]
